@@ -5,8 +5,8 @@ from src.masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(card_data: str) -> str:
-    """ Функция которая принимает одним аргументом тип данных
-     и номер данных, а затем маскирует номер данных"""
+    """Функция которая принимает одним аргументом тип данных
+    и номер данных, а затем маскирует номер данных"""
     pattern = "Счет"
     data_type = bool(re.search(pattern, card_data))
 
@@ -26,13 +26,13 @@ def mask_account_card(card_data: str) -> str:
 
 
 def get_date(iso_date: str) -> str:
-    """ Функция принимает дату и время в формате ISO преобразует и
+    """Функция принимает дату и время в формате ISO преобразует и
     возвращает в привычную человеческому глазу"""
     date = datetime.fromisoformat(iso_date)
-    return date.strftime("%d.%m.%Y %H:%M:%S")
+    return date.strftime("%d.%m.%Y (%H:%M:%S)")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # Проверка
     print(mask_account_card("Maestro 1596837868705199"))
     print(mask_account_card("Счет 64686473678894779589"))
     print(mask_account_card("MasterCard 7158300734726758"))
