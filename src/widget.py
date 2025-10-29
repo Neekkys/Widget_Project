@@ -29,7 +29,7 @@ def get_date(iso_date: str) -> str:
     """Функция принимает дату и время в формате ISO преобразует и
     возвращает в привычную человеческому глазу"""
     date = datetime.fromisoformat(iso_date)
-    return date.strftime("%d.%m.%Y (%H:%M:%S)")
+    return date.strftime("%d.%m.%Y")
 
 
 if __name__ == "__main__":  # Проверка
