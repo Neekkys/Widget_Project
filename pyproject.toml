@@ -24,6 +24,10 @@ black = "^25.9.0"
 mypy = "^1.18.2"
 isort = "^7.0.0"
 
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^9.0.1"
+
 [tool.black]
 line-length = 119
 exclude = '''
