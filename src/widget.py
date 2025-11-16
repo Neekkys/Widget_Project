@@ -15,6 +15,8 @@ def mask_account_card(card_data: str) -> str:
         account_list = card_data.split(" ")
         account_type = account_list[0]
         account_number = get_mask_account(account_list[-1])
+        if "Check your account number" in account_number:
+            return "Check your account number"
         return f"{account_type} {account_number}"
 
     # Маска для карты
@@ -22,14 +24,19 @@ def mask_account_card(card_data: str) -> str:
         card_list = card_data.split(" ")
         card_type = card_list[0:-1]
         card_number = get_mask_card_number(card_list[-1])
+        if "Check your card number" in card_number:
+            return "Check your card number"
         return f"{" ".join(card_type)} {card_number}"
 
 
 def get_date(iso_date: str) -> str:
     """Функция принимает дату и время в формате ISO преобразует и
     возвращает в привычную человеческому глазу"""
-    date = datetime.fromisoformat(iso_date)
-    return date.strftime("%d.%m.%Y")
+    try:
+        date = datetime.fromisoformat(iso_date)
+        return date.strftime("%d.%m.%Y")
+    except (ValueError, TypeError):
+        return "Incorrect date format"
 
 
 if __name__ == "__main__":  # Проверка
@@ -40,5 +47,11 @@ if __name__ == "__main__":  # Проверка
     print(mask_account_card("Visa Classic 6831982476737658"))
     print(mask_account_card("Visa Platinum 8990922113665229"))
     print(mask_account_card("Visa Gold 5999414228426353"))
+    print(mask_account_card("Visa Gold 5999414"))
     print(mask_account_card("Счет 73654108430135874305"))
+    print(mask_account_card("Счет 7365410843013"))
     print(get_date("2024-03-11T02:26:18.671407"))
+    print(get_date("2024-3-11T02:26:18.671407"))
+    print(get_date("2024-03-1102:26:18.671407"))
+    print(get_date("2024-03-11T"))
+    print(get_date("2024-03-11"))

@@ -27,6 +27,7 @@ isort = "^7.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^9.0.1"
+pytest-cov = "^7.0.0"
 
 [tool.black]
 line-length = 119
