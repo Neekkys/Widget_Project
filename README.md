@@ -59,7 +59,7 @@ python main.py
 Содержит функции для маскировки конфиденциальных данных:
 
 ```python
-from mask import get_mask_card_number, get_mask_account
+from src.masks import get_mask_card_number, get_mask_account
 
 # Маскировка номера карты
 card_mask = get_mask_card_number("7000792289606361")
@@ -75,7 +75,7 @@ print(account_mask)  # "**4305"
 Содержит функции для обработки и форматирования данных:
 
 ```python
-from widget import mask_account_card, get_date
+from src.widget import mask_account_card, get_date
 
 # Маскировка данных карты/счета
 masked_data = mask_account_card("Visa Platinum 7000792289606361")
@@ -104,7 +104,7 @@ print(formatted_date)  # "15.01.2024"
 **Пример использования:**
 
 ```python
-from processing import filter_by_state
+from src.processing import filter_by_state
 
 # Пример данных операций
 operations = [
@@ -131,6 +131,32 @@ executed_operations = filter_by_state(operations, "EXECUTED")
 print(executed_operations)
 # [{'id': 1, 'state': 'EXECUTED', 'date': '2024-01-15T14:30:00Z', ...}]
 ```
+
+#### Модуль `generators.py`
+
+Модуль содержит три генераторные функции для работы с финансовыми данными:
+
+### 1. `filter_by_currency(transactions, currency)`
+**Назначение:** Фильтрует транзакции по заданной валюте  
+**Параметры:**
+- `transactions` - список словарей с транзакциями
+- `currency` - код валюты (например, "USD", "EUR")
+**Возвращает:** генератор, который выдает транзакции в указанной валюте
+
+### 2. `transaction_descriptions(transactions)`
+**Назначение:** Извлекает описания из всех транзакций  
+**Параметры:**
+- `transactions` - список словарей с транзакциями
+**Возвращает:** генератор, который выдает описания операций
+
+### 3. `card_number_generator(first_value, last_value)`
+**Назначение:** Генерирует номера банковских карт в заданном диапазоне  
+**Параметры:**
+- `first_value` - начальный номер карты (целое число)
+- `last_value` - конечный номер карты (целое число)
+**Возвращает:** генератор, который выдает номера карт в формате "XXXX XXXX XXXX XXXX"
+**Исключения:** `ValueError` при некорректном диапазоне значений
+
 ## Структура проекта
 
 ```
@@ -140,12 +166,14 @@ Wiget_Project/
 ├── htmlcov/               # Отчеты о покрытии кода тестами
 ├── src/                   # Исходный код проекта
 │   ├── __init__.py
+│   ├── generators.py      # Модуль с генераторами для работы с транзакциями и картами
 │   ├── masks.py           # Функции маскировки карт и счетов
 │   ├── processing.py      # Фильтрация и сортировка операций
 │   └── widget.py          # Основные функции виджета
 ├── tests/                 # Тесты проекта
 │   ├── __init__.py
 │   ├── conftest.py        # Фикстуры для pytest
+│   ├── test_generators.py # Тесты для модуля generators.py
 │   ├── test_masks.py      # Тесты для модуля masks.py
 │   ├── test_processing.py # Тесты для модуля processing.py
 │   └── test_widget.py     # Тесты для модуля widget.py
@@ -175,8 +203,8 @@ coverage html  # для генерации HTML отчета в папке htmlc
 
 ```
 1. Все тесты проходят успешно
-2. 49 тестов covering основные модули
-3. 100% покрытие критической функциональности
+2. 61 тест covering основные модули
+3. 96% покрытие критической функциональности
 ```
 
 ## Разработка
