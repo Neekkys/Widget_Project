@@ -32,8 +32,5 @@ def mask_account_card(card_data: str) -> str:
 def get_date(iso_date: str) -> str:
     """Функция принимает дату и время в формате ISO преобразует и
     возвращает в привычную человеческому глазу"""
-    try:
-        date = datetime.fromisoformat(iso_date)
-        return date.strftime("%d.%m.%Y")
-    except (ValueError, TypeError):
-        return "Incorrect date format"
+    date = datetime.fromisoformat(iso_date)
+    return date.strftime("%d.%m.%Y")
