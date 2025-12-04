@@ -34,5 +34,5 @@ def card_number_generator(first_value: int, last_value: int) -> Generator[str, N
 
     for card_number in range(first_value, last_value + 1):
         card_str = format(card_number, "016d")
-        gen = " ".join(card_str[x: x + 4] for x in range(0, 16, 4))
+        gen = " ".join(card_str[x:x + 4] for x in range(0, 16, 4))
         yield gen
