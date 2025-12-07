@@ -9,7 +9,7 @@ url = "https://api.apilayer.com/exchangerates_data/convert"
 
 
 def api_convert(currency_code: str, amount: str | float) -> float:
-    """Конвертирует сумму из указанной валюты в рубли"""
+    """ Конвертирует сумму из EUR and USD в рубли, обращаясь к API apilayer.com """
     payload = {"to": "RUB", "from": currency_code, "amount": amount}
     headers = {"apikey": api_key}
     if currency_code not in ["EUR", "USD"]:
