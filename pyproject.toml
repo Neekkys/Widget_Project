@@ -17,6 +17,8 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.dependencies]
 python = ">=3.13"
+python-dotenv = "^1.2.1"
+requests = "^2.32.5"
 
 [tool.poetry.group.lint.dependencies]
 flake8 = "^7.3.0"
