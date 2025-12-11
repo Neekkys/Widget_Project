@@ -1,4 +1,5 @@
 import json
+import logging
 from unittest.mock import mock_open, patch
 
 from _pytest.capture import CaptureFixture
@@ -59,14 +60,14 @@ def test_unpacking_json_file_empty():
         assert result == []
 
 
-@patch("builtins.open", side_effect=json.JSONDecodeError("Ошибка JSON", "test.json", 0))
-def test_unpacking_json_file_json_decode_error(mock_open, capsys: CaptureFixture):
+def test_unpacking_json_file_json_decode_error(caplog):
     """Некорректный JSON, возвращает сообщение и []"""
-    result = unpacking_json_file("test.json")
+    caplog.set_level(logging.CRITICAL)
 
-    captured = capsys.readouterr()
-    assert "JSONDecodeError" in captured.out
-    assert "Ошибка JSON" in captured.out
+    with patch("builtins.open", side_effect=json.JSONDecodeError("Ошибка JSON", "test.json", 0)):
+        result = unpacking_json_file("test.json")
+    assert any("JSONDecodeError" in record.message for record in caplog.records)
+    assert any("Произошла ошибка при открытии файла" in record.message for record in caplog.records)
     assert result == []
 
 
