@@ -43,7 +43,7 @@ def test_log_success_write_file():
     success_test(2, 1)
     success_test(2, 2)
 
-    base_dir = BASE_DIR.joinpath("data", "test_log.txt")
+    base_dir = BASE_DIR.joinpath("logs", "test_log.txt")
     assert base_dir.exists()
 
     content = base_dir.read_text()
@@ -61,7 +61,7 @@ def test_log_not_success_write_file():
     not_success_test(2, 0)
     not_success_test(2, "2")
 
-    base_dir = BASE_DIR.joinpath("data", "test_log.txt")
+    base_dir = BASE_DIR.joinpath("logs", "test_log.txt")
     assert base_dir.exists()
 
     content = base_dir.read_text()
