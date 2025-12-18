@@ -4,13 +4,19 @@ from typing import Any, Generator, Optional
 def filter_by_currency(
     transactions: list[dict], currency: Optional[str] = None
 ) -> Generator[dict[str, Any], None, None]:
-    """Функция, которая принимает на вход список словарей, представляющих транзакции,
-    возвращает итератор, который поочередно выдает транзакции,
+    """Функция, которая принимает на вход список словарей, представляющих транзакции.
+    Возвращает итератор, который поочередно выдает транзакции,
     где валюта операции соответствует заданной"""
     for transaction in transactions:
         try:
-            if transaction["operationAmount"]["currency"]["code"] == currency:
-                yield transaction
+            if "operationAmount" in transaction:
+                json_list = str(transaction["operationAmount"]["currency"]["code"]).upper()
+                if json_list == currency:
+                    yield transaction
+            else:
+                csv_xlsx_list = transaction.get("currency_code", "").upper()
+                if csv_xlsx_list == currency:
+                    yield transaction
         except KeyError:
             continue
 

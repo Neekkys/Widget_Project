@@ -5,7 +5,7 @@ from src.masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(card_data: str) -> str:
-    """Функция которая принимает одним аргументом тип данных
+    """Функция, которая принимает одним аргументом тип данных
     и номер данных, а затем маскирует номер данных"""
     pattern = "Счет"
     data_type = bool(re.search(pattern, card_data))

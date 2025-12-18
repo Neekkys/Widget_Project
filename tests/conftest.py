@@ -256,3 +256,30 @@ def description():
         "Перевод организации",
         "Перевод организации",
     ]
+
+
+@pytest.fixture
+def sample_bank_operations():
+    return [
+        {"description": "Grocery Store", "amount": 100.50, "date": "2023-01-01"},
+        {"description": "Gas Station", "amount": 50.00, "date": "2023-01-02"},
+        {"description": "Netflix Subscription", "amount": 15.99, "date": "2023-01-03"},
+        {"description": "Grocery Store", "amount": 75.25, "date": "2023-01-04"},
+        {"description": "Coffee Shop", "amount": 5.50, "date": "2023-01-05"},
+    ]
+
+
+@pytest.fixture
+def sample_categories():
+    return ["Grocery", "Entertainment", "Transport", "Food"]
+
+
+@pytest.fixture
+def operations():
+    return [
+        {"description": "Grocery", "amount": 100},
+        {"description": "Grocery", "amount": 50},
+        {"description": "Entertainment", "amount": 15.99},
+        {"description": "Transport", "amount": 30},
+        {"description": "Food", "amount": 25}
+    ]

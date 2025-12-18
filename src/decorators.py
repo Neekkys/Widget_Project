@@ -22,7 +22,7 @@ def log(filename=None):
                 )
                 result_func = None
             if filename:
-                data_dir = BASE_DIR.joinpath("data", filename)
+                data_dir = BASE_DIR.joinpath("logs", filename)
                 with open(data_dir, "a", encoding="UTF-8") as f:
                     f.write(log_message)
             else:

@@ -10,7 +10,7 @@ def test_filter_by_state_executed(filter_by_state_executed):
 
 
 def test_filter_by_state_empty():
-    assert filter_by_state([]) == "Error, the list is empty"
+    assert filter_by_state([]) == []
 
 
 def test_filter_by_state_canceled(filter_by_state_canceled):
@@ -20,7 +20,7 @@ def test_filter_by_state_canceled(filter_by_state_canceled):
 
 
 def test_filter_by_state_executed_not_found(canceled):
-    assert filter_by_state(canceled) == "Error, operation not found"
+    assert filter_by_state(canceled) == []
 
 
 # Функция sort_by_date
@@ -43,4 +43,4 @@ def test_sort_by_date_not_reverse(date_list):
 
 
 def test_sort_by_date_empty():
-    assert sort_by_date([]) == "Error, the list is empty"
+    assert sort_by_date([]) == []
