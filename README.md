@@ -1,5 +1,3 @@
-from src.process_search_operation import process_bank_operationsfrom src.utils import unpacking_json_file
-
 # Виджет банковских операций
 
 Виджет для отображения последних успешных банковских операций клиента в личном кабинете банка.
